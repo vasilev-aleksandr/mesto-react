@@ -12,17 +12,12 @@ class Api {
     }
   return Promise.reject(new Error(`Произошла ошибка со статус кодом ${res.status}`))
   }
-
-  _handleError(err) {
-    return Promise.reject(err)
-  }
     
   getCards() {
     return fetch(`${this.url}/cards`, {
       headers: this.headers,
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 
   createCard({name, link}) {
@@ -32,7 +27,6 @@ class Api {
       body: JSON.stringify({ name, link })
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 
   deleteCard(id) {
@@ -41,7 +35,6 @@ class Api {
       headers: this.headers,
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
     }
 
   likeCard(cardId) {
@@ -50,7 +43,6 @@ class Api {
       headers: this.headers,
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 
   dislikeCard(cardId) {
@@ -59,7 +51,6 @@ class Api {
       headers: this.headers,
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 
   getMyInfo() {
@@ -67,7 +58,6 @@ class Api {
       headers: this.headers,
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 
   updateMyInfo({name, about}) {
@@ -77,7 +67,6 @@ class Api {
       body: JSON.stringify({ name, about })
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 
   updateMyAvatar(avatar) {
@@ -87,7 +76,6 @@ class Api {
       body: JSON.stringify({ avatar })
     })
     .then(this._handleResponse)
-    .catch(this._handleError)
   }
 }
 

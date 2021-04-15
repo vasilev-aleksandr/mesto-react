@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import api from '../utils/Api';
 import Card from './Card'
 
 
 function Main(props) {
-  const [userName, setUserName] = useState();
-  const [userDescription, setUserDescription] = useState();
-  const [userAvatar, setUserAvatar] = useState();
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
   const [cards, setCards] = useState([]);
 
-  useEffect(() => {
-    api
-      .getMyInfo()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-
-        return api.getCards();
-      })
-      .then((res) => {
-        setCards(res);
-      });
-  }, []);
-
+  Promise.all([api.getMyInfo(), api.getCards()])
+    .then(([info, cards]) => {
+      setUserName(info.name)
+      setUserDescription(info.about);
+      setUserAvatar(info.avatar);
+      setCards(cards);
+    })
+    .catch((error) => {
+      console.error(error)
+  })
 
   return (
     <main className="main">
