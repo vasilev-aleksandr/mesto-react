@@ -12,8 +12,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     });
   }
 
-
-
   return (
     <PopupWithForm
       name="avatar"

@@ -6,6 +6,7 @@ class Api {
     this.headers = config.headers
   }
 
+  
   _handleResponse(res) {
     if (res.ok) {
       return res.json()
@@ -17,7 +18,7 @@ class Api {
     return fetch(`${this.url}/cards`, {
       headers: this.headers,
     })
-    .then(this._handleResponse)
+    .then(this._handleResponse)  
   }
 
   createCard({name, link}) {
