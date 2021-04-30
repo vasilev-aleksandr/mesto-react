@@ -13,6 +13,13 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     });
   }
 
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+  function handleLinkChange(e) {
+    setLink(e.target.value);
+  }
+
   return(
     <PopupWithForm 
       name="place"
@@ -31,7 +38,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         maxLength="40" 
         required 
         value={name}
-        onChange={(e) => {setName(e.target.value)}}
+        onChange={handleNameChange}
       />
       <span className="place-name-error popup__error"/>
       <input 
@@ -42,7 +49,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         placeholder="Ссылка на картинку" 
         required
         value={link}
-        onChange={(e) => {setLink(e.target.value)}}
+        onChange={handleLinkChange}
       />
       <span className="place-link-error popup__error"/>
     </PopupWithForm>
