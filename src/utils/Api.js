@@ -6,7 +6,7 @@ class Api {
     this.headers = config.headers
   }
 
-  
+
   _handleResponse(res) {
     if (res.ok) {
       return res.json()
@@ -82,7 +82,10 @@ class Api {
 
 const api = new Api ({
   url: 'https://mesto.nomoreparties.co/v1/cohort-21',
-  headers: { authorization: '5272ec4f-012a-4dd0-babb-fcf2aac8eb04' }
+  headers: {
+    authorization: '5272ec4f-012a-4dd0-babb-fcf2aac8eb04',
+    'Content-Type': 'application/json'
+  }
   })
 
 export default api

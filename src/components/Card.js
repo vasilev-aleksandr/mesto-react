@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  const cardDeleteButtonClassName = `place_delete-button ${isOwn && 'place_delete-button_visible'}`; 
+  const cardDeleteButtonClassName = `place__delete-button ${isOwn ? 'place__delete-button_visible': 'place__delete-button_hidden'}`; 
   const isLiked = card.likes.some(i => i._id === currentUser._id);
   const cardLikeButtonClassName = `place__like ${isLiked && 'place__like_active'}`;
   
