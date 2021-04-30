@@ -37,20 +37,20 @@ class Api {
     .then(this._handleResponse)
     }
 
-  likeCard(cardId) {
-    return fetch(`${this.url}/cards/likes/${cardId}`, {
-      method: METHOD.PUT,  
-      headers: this.headers,
-    })
-    .then(this._handleResponse)
-  }
 
-  dislikeCard(cardId) {
+
+ changeLikeCardStatus(cardId, likeStatus) {
+  if (likeStatus) {
     return fetch(`${this.url}/cards/likes/${cardId}`, {
-      method: METHOD.DELETE,  
+      method: METHOD.PUT,
       headers: this.headers,
-    })
-    .then(this._handleResponse)
+    }).then(this._handleResponse)
+  } else {
+    return fetch(`${this.url}/cards/likes/${cardId}`, {
+      method: METHOD.DELETE,
+      headers: this.headers,
+    }).then(this._handleResponse)
+    }
   }
 
   getMyInfo() {
@@ -85,3 +85,5 @@ const api = new Api ({
   })
 
 export default api
+
+
