@@ -62,20 +62,18 @@ function App() {
     setSelectedCard(card);
   }
 
+
   function handleUpdateUser(userInfo) {
     api
       .updateMyInfo(userInfo)
       .then((userData) => {
         setCurrentUser(userData);
         setIsEditProfileOpen(false);
-        const updatedUser = { ...currentUser };
-        updatedUser.name = userInfo.name;
-        updatedUser.about = userInfo.about;
-      })
+    })
       .catch((err) => {
         console.error(err);
       });
-  }
+    }
 
   function handleUpdateAvatar({ avatar }) {
     api
