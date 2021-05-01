@@ -38,6 +38,9 @@ function App() {
       .getMyInfo()
       .then((res) => {
         setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   },[]);
 
@@ -63,12 +66,12 @@ function App() {
   function handleUpdateUser(userInfo) {
     api
       .updateMyInfo(userInfo)
-      .then(() => {
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsEditProfileOpen(false);
         const updatedUser = { ...currentUser };
         updatedUser.name = userInfo.name;
         updatedUser.about = userInfo.about;
-        setCurrentUser({ ...updatedUser });
-        setIsEditProfileOpen(false);
       })
       .catch((err) => {
         console.error(err);
@@ -104,15 +107,19 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    })
+    .catch((err) => {
+      console.error(err);
     });
-} 
+  } 
 
   function handleCardDelete(card) {
     api.deleteCard(card._id).then(() => {
       const newCards = cards.filter(c => c._id !== card._id);
       setCards(newCards);
-    }).catch(err => {
-      console.log(err);
+    })
+      .catch(err => {
+        console.log(err);
     });
   }
 
