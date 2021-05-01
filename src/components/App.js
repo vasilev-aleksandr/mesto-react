@@ -60,7 +60,6 @@ function App() {
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    console.log(selectedCard)
   }
 
   function handleUpdateUser(userInfo) {
